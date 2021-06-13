@@ -3,26 +3,38 @@ import React, { useState, useEffect } from "react";
 const Context = React.createContext();
 
 function ContextProvider({ children }) {
+  // Session or break
+  const [state, setState] = useState("session");
+
   // Break state
   const [breakLength, setBreakLength] = useState(5);
 
   // Session state
   const [sessionLength, setSessionLength] = useState(25);
+
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
 
   // Play/Pause button
   const [playPauseButton, setPlayPauseButton] = useState(false);
-  if (minutes !== sessionLength) {
-    setMinutes(sessionLength);
-  }
 
   // Timer
   function updateTime() {
     if (minutes == 0 && seconds == 0) {
       //reset
-      setSeconds(0);
-      setMinutes(25);
+      if (state === "session") {
+        alert("Session over! Continue?");
+        setState("break");
+        setSeconds(0);
+        setMinutes(breakLength);
+        //setPlayPauseButton(false);
+      } else {
+        alert("Break over! Continue?");
+        setState("session");
+        setSeconds(0);
+        setMinutes(sessionLength);
+        //setPlayPauseButton(false);
+      }
     } else {
       if (seconds == 0) {
         setMinutes((minutes) => minutes - 1);
@@ -55,9 +67,12 @@ function ContextProvider({ children }) {
         setSessionLength,
         seconds,
         setSeconds,
+        playPauseButton,
         setPlayPauseButton,
         minutes,
         setMinutes,
+        state,
+        setState,
       }}
     >
       {children}

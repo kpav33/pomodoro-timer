@@ -12,6 +12,7 @@ function PomodoroTimer() {
     seconds,
     minutes,
     setMinutes,
+    playPauseButton,
   } = useContext(Context);
 
   return (
@@ -20,13 +21,19 @@ function PomodoroTimer() {
       <div className="clock">
         <div id="timer-label">Session</div>
         <div id="time-left">
-          {minutes} : {seconds}
+          {/* If minutes or seconds are less than 10 add a leading 0 to it*/}
+          {`${minutes < 10 ? "0" + minutes : minutes}:${
+            seconds < 10 ? "0" + seconds : seconds
+          }`}
         </div>
       </div>
       <div className="controlButtons">
         <div id="start_stop">
-          <div onClick={() => setPlayPauseButton(true)}>Play</div>
-          <div onClick={() => setPlayPauseButton(false)}>Pause</div>
+          {!playPauseButton ? (
+            <div onClick={() => setPlayPauseButton(true)}>Play</div>
+          ) : (
+            <div onClick={() => setPlayPauseButton(false)}>Pause</div>
+          )}
         </div>
         <div
           id="reset"
