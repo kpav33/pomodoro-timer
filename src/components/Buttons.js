@@ -14,6 +14,8 @@ function Buttons() {
     seconds,
     setMinutes,
     state,
+    setPlayPauseButton,
+    playPauseButton,
   } = useContext(Context);
 
   return (
@@ -24,14 +26,17 @@ function Buttons() {
           <ArrowUpwardIcon
             id="break-increment"
             onClick={() => {
-              setBreakLength((prevState) => {
-                if (prevState < 60) {
-                  return prevState + 1;
-                } else {
-                  return prevState;
-                }
-              });
-              if (state === "break") {
+              if (playPauseButton === false) {
+                setBreakLength((prevState) => {
+                  console.log(prevState);
+                  if (prevState < 60) {
+                    return prevState + 1;
+                  } else {
+                    return prevState;
+                  }
+                });
+              }
+              if (state === "break" && playPauseButton === false) {
                 setMinutes((prevState) => {
                   if (prevState < 60) {
                     return prevState + 1;
@@ -47,19 +52,22 @@ function Buttons() {
           <ArrowDownwardIcon
             id="break-decrement"
             onClick={() => {
-              setBreakLength((prevState) => {
-                if (prevState > 1) {
-                  return prevState - 1;
-                } else {
-                  return 0;
-                }
-              });
-              if (state === "break") {
+              if (playPauseButton === false) {
+                setBreakLength((prevState) => {
+                  console.log(prevState);
+                  if (prevState > 1) {
+                    return prevState - 1;
+                  } else {
+                    return 1;
+                  }
+                });
+              }
+              if (state === "break" && playPauseButton === false) {
                 setMinutes((prevState) => {
                   if (prevState > 1) {
                     return prevState - 1;
                   } else {
-                    return 0;
+                    return 1;
                   }
                 });
               }
@@ -74,14 +82,16 @@ function Buttons() {
           <ArrowUpwardIcon
             id="session-increment"
             onClick={() => {
-              setSessionLength((prevState) => {
-                if (prevState < 60) {
-                  return prevState + 1;
-                } else {
-                  return prevState;
-                }
-              });
-              if (state == "session") {
+              if (playPauseButton === false) {
+                setSessionLength((prevState) => {
+                  if (prevState < 60) {
+                    return prevState + 1;
+                  } else {
+                    return prevState;
+                  }
+                });
+              }
+              if (state == "session" && playPauseButton === false) {
                 setMinutes((prevState) => {
                   if (prevState < 60) {
                     return prevState + 1;
@@ -97,19 +107,21 @@ function Buttons() {
           <ArrowDownwardIcon
             id="session-decrement"
             onClick={() => {
-              setSessionLength((prevState) => {
-                if (prevState > 1) {
-                  return prevState - 1;
-                } else {
-                  return 0;
-                }
-              });
-              if (state === "session") {
+              if (playPauseButton === false) {
+                setSessionLength((prevState) => {
+                  if (prevState > 1) {
+                    return prevState - 1;
+                  } else {
+                    return 1;
+                  }
+                });
+              }
+              if (state === "session" && playPauseButton === false) {
                 setMinutes((prevState) => {
                   if (prevState > 1) {
                     return prevState - 1;
                   } else {
-                    return 0;
+                    return 1;
                   }
                 });
               }

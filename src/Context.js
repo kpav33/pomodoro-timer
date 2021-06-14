@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const Context = React.createContext();
 
@@ -18,18 +18,28 @@ function ContextProvider({ children }) {
   // Play/Pause button
   const [playPauseButton, setPlayPauseButton] = useState(false);
 
+  // Audio
+  const audioRef = useRef();
+
+  let audioSrc =
+    "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav";
+
+  // <audio src={audioSrc} className="clip" ref={audioRef} />;
+
   // Timer
   function updateTime() {
     if (minutes == 0 && seconds == 0) {
+      audioRef.current.load();
+      audioRef.current.play();
       //reset
       if (state === "session") {
-        alert("Session over! Continue?");
+        //alert("Session over! Continue?");
         setState("break");
         setSeconds(0);
         setMinutes(breakLength);
         //setPlayPauseButton(false);
       } else {
-        alert("Break over! Continue?");
+        //alert("Break over! Continue?");
         setState("session");
         setSeconds(0);
         setMinutes(sessionLength);
@@ -73,6 +83,8 @@ function ContextProvider({ children }) {
         setMinutes,
         state,
         setState,
+        audioSrc,
+        audioRef,
       }}
     >
       {children}
