@@ -28,9 +28,15 @@ function ContextProvider({ children }) {
 
   // Timer
   function updateTime() {
+    console.log(minutes, seconds);
+    // Uncaught (in promise) DOMException: The fetching process for the media resource was aborted by the user agent at the user's request.
     if (minutes == 0 && seconds == 0) {
       audioRef.current.load();
-      audioRef.current.play();
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {}).catch((err) => console.log(err));
+        console.log("PLAY SOUND");
+      }
       //reset
       if (state === "session") {
         //alert("Session over! Continue?");

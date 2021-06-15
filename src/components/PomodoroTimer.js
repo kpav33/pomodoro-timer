@@ -15,6 +15,7 @@ function PomodoroTimer() {
     setMinutes,
     playPauseButton,
     state,
+    setState,
     audioSrc,
     audioRef,
   } = useContext(Context);
@@ -53,12 +54,19 @@ function PomodoroTimer() {
             setSeconds(0);
             setSessionLength(25);
             setBreakLength(5);
+            setState("session");
           }}
         >
           Restart
         </div>
       </div>
-      <audio id="beep" src={audioSrc} className="clip" ref={audioRef} />
+      <audio
+        id="beep"
+        preload="auto"
+        src={audioSrc}
+        className="clip"
+        ref={audioRef}
+      />
     </div>
   );
 }
