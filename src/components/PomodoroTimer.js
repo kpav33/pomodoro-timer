@@ -49,6 +49,7 @@ function PomodoroTimer() {
           id="reset"
           onClick={() => {
             audioRef.current.pause();
+            audioRef.current.currentTime = 0;
             setPlayPauseButton(false);
             setMinutes(25);
             setSeconds(0);

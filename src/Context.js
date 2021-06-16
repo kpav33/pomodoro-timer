@@ -26,17 +26,35 @@ function ContextProvider({ children }) {
 
   // <audio src={audioSrc} className="clip" ref={audioRef} />;
 
+  //console.log(minutes, seconds);
+  if (minutes == 0 && seconds == 0) {
+    audioRef.current.load();
+    const playPromise = audioRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {}).catch((err) => console.log(err));
+      console.log("PLAY SOUND");
+    }
+  }
+
   // Timer
   function updateTime() {
-    console.log(minutes, seconds);
+    //console.log("INSIDE updateTime() " + minutes, seconds);
     // Uncaught (in promise) DOMException: The fetching process for the media resource was aborted by the user agent at the user's request.
-    if (minutes == 0 && seconds == 0) {
+    if (minutes == 1 && seconds == 0 && false) {
       audioRef.current.load();
       const playPromise = audioRef.current.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {}).catch((err) => console.log(err));
         console.log("PLAY SOUND");
       }
+    }
+    if (minutes == 0 && seconds == 0) {
+      /*audioRef.current.load();
+      const playPromise = audioRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {}).catch((err) => console.log(err));
+        console.log("PLAY SOUND");
+      }*/
       //reset
       if (state === "session") {
         //alert("Session over! Continue?");
