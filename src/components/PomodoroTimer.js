@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { Context } from "../Context";
 
 import Buttons from "./Buttons";
+import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa";
+import { FiRefreshCw } from "react-icons/fi";
 
 function PomodoroTimer() {
   const {
@@ -9,7 +12,6 @@ function PomodoroTimer() {
     setSessionLength,
     setBreakLength,
     setSeconds,
-    sessionLength,
     seconds,
     minutes,
     setMinutes,
@@ -37,11 +39,11 @@ function PomodoroTimer() {
         <div id="test">
           {!playPauseButton ? (
             <div id="start_stop" onClick={() => setPlayPauseButton(true)}>
-              Play
+              <FaPlay />
             </div>
           ) : (
             <div id="start_stop" onClick={() => setPlayPauseButton(false)}>
-              Pause
+              <FaPause />
             </div>
           )}
         </div>
@@ -58,7 +60,7 @@ function PomodoroTimer() {
             setState("session");
           }}
         >
-          Restart
+          <FiRefreshCw />
         </div>
       </div>
       <audio

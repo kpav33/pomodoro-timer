@@ -21,13 +21,14 @@ function ContextProvider({ children }) {
   // Audio
   const audioRef = useRef();
 
+  // Play sound, added to fix audio bug of playing sound on one minute mark
+  const [play, setPlay] = useState(false);
+
   let audioSrc =
     "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav";
 
-  // <audio src={audioSrc} className="clip" ref={audioRef} />;
-
-  //console.log(minutes, seconds);
-  if (minutes == 0 && seconds == 0) {
+  console.log(minutes, seconds);
+  if (minutes === 0 && seconds === 0 && play) {
     audioRef.current.load();
     const playPromise = audioRef.current.play();
     if (playPromise !== undefined) {
@@ -38,39 +39,31 @@ function ContextProvider({ children }) {
 
   // Timer
   function updateTime() {
-    //console.log("INSIDE updateTime() " + minutes, seconds);
-    // Uncaught (in promise) DOMException: The fetching process for the media resource was aborted by the user agent at the user's request.
-    if (minutes == 1 && seconds == 0 && false) {
-      audioRef.current.load();
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {}).catch((err) => console.log(err));
-        console.log("PLAY SOUND");
-      }
+    // Fix bug of playing audio at one minute mark, search for better solution
+    if (minutes === 0) {
+      setPlay(true);
     }
-    if (minutes == 0 && seconds == 0) {
-      /*audioRef.current.load();
-      const playPromise = audioRef.current.play();
-      if (playPromise !== undefined) {
-        playPromise.then(() => {}).catch((err) => console.log(err));
-        console.log("PLAY SOUND");
-      }*/
+    if (minutes === 0 && seconds === 0) {
       //reset
       if (state === "session") {
-        //alert("Session over! Continue?");
+        // Tests don't pass with the commented out code in place
+        // alert("Session over! Continue?");
         setState("break");
         setSeconds(0);
         setMinutes(breakLength);
-        //setPlayPauseButton(false);
+        setPlay(false);
+        // setPlayPauseButton(false);
       } else {
-        //alert("Break over! Continue?");
+        // Tests don't pass with the commented out code in place
+        // alert("Break over! Continue?");
         setState("session");
         setSeconds(0);
         setMinutes(sessionLength);
-        //setPlayPauseButton(false);
+        setPlay(false);
+        // setPlayPauseButton(false);
       }
     } else {
-      if (seconds == 0) {
+      if (seconds === 0) {
         setMinutes((minutes) => minutes - 1);
         setSeconds(59);
       } else {
@@ -80,9 +73,6 @@ function ContextProvider({ children }) {
   }
 
   useEffect(() => {
-    // use set timeout and be confident because updateTime will cause rerender
-    // rerender mean re call this effect => then it will be similar to how setinterval works
-    // but with easy to understand logic
     if (playPauseButton) {
       const token = setTimeout(updateTime, 1000);
 

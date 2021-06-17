@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 
 import { Context } from "../Context";
 
-import ArrowUpwardIcon from "@material-ui/icons/ArrowUpward";
-import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
+import { FaArrowUp } from "react-icons/fa";
+import { FaArrowDown } from "react-icons/fa";
 
 function Buttons() {
   const {
@@ -11,225 +11,129 @@ function Buttons() {
     setBreakLength,
     sessionLength,
     setSessionLength,
-    seconds,
     setMinutes,
     state,
-    setPlayPauseButton,
     playPauseButton,
   } = useContext(Context);
 
   return (
     <div className="buttons">
-      <div id="break-label">
+      <div id="break-label" className="label">
         <h4>Break Length</h4>
         <div className="breaks">
           <button
-            id="break-increment"
+            className="arrow"
+            id="break-decrement"
             onClick={() => {
               if (playPauseButton === false) {
                 setBreakLength((prevState) => {
                   //console.log(prevState);
-                  if (prevState < 60) {
-                    return prevState + 1;
+                  if (prevState > 1) {
+                    return prevState - 1;
                   } else {
-                    return prevState;
+                    return 1;
                   }
                 });
               }
               if (state === "break" && playPauseButton === false) {
                 setMinutes((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
+                  if (prevState > 1) {
+                    return prevState - 1;
                   } else {
-                    return prevState;
+                    return 1;
                   }
                 });
               }
             }}
           >
-            UP
+            <FaArrowDown />
           </button>
-          {/*<ArrowUpwardIcon
-            id="break-increment"
-            onClick={() => {
-              if (playPauseButton === false) {
-                setBreakLength((prevState) => {
-                  console.log(prevState);
-                  if (prevState < 60) {
-                    return prevState + 1;
-                  } else {
-                    return prevState;
-                  }
-                });
-              }
-              if (state === "break" && playPauseButton === false) {
-                setMinutes((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
-                  } else {
-                    return prevState;
-                  }
-                });
-              }
-            }}
-            fontSize="large"
-          />*/}
           <span id="break-length">{breakLength}</span>
           <button
-            id="break-decrement"
+            className="arrow"
+            id="break-increment"
             onClick={() => {
               if (playPauseButton === false) {
                 setBreakLength((prevState) => {
                   //console.log(prevState);
-                  if (prevState > 1) {
-                    return prevState - 1;
+                  if (prevState < 60) {
+                    return prevState + 1;
                   } else {
-                    return 1;
+                    return prevState;
                   }
                 });
               }
               if (state === "break" && playPauseButton === false) {
                 setMinutes((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
+                  if (prevState < 60) {
+                    return prevState + 1;
                   } else {
-                    return 1;
+                    return prevState;
                   }
                 });
               }
             }}
           >
-            DOWN
+            <FaArrowUp />
           </button>
-          {/*<ArrowDownwardIcon
-            id="break-decrement"
-            onClick={() => {
-              if (playPauseButton === false) {
-                setBreakLength((prevState) => {
-                  console.log(prevState);
-                  if (prevState > 1) {
-                    return prevState - 1;
-                  } else {
-                    return 1;
-                  }
-                });
-              }
-              if (state === "break" && playPauseButton === false) {
-                setMinutes((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
-                  } else {
-                    return 1;
-                  }
-                });
-              }
-            }}
-            fontSize="large"
-          />*/}
         </div>
       </div>
-      <div id="session-label">
+      <div id="session-label" className="label">
         <h4>Session Length</h4>
         <div className="sessions">
           <button
-            id="session-increment"
+            className="arrow"
+            id="session-decrement"
             onClick={() => {
               if (playPauseButton === false) {
                 setSessionLength((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
+                  if (prevState > 1) {
+                    return prevState - 1;
                   } else {
-                    return prevState;
+                    return 1;
                   }
                 });
               }
-              if (state == "session" && playPauseButton === false) {
+              if (state === "session" && playPauseButton === false) {
                 setMinutes((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
+                  if (prevState > 1) {
+                    return prevState - 1;
                   } else {
-                    return prevState;
+                    return 1;
                   }
                 });
               }
             }}
           >
-            UP
+            <FaArrowDown />
           </button>
-          {/*<ArrowUpwardIcon
-            id="session-increment"
-            onClick={() => {
-              if (playPauseButton === false) {
-                setSessionLength((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
-                  } else {
-                    return prevState;
-                  }
-                });
-              }
-              if (state == "session" && playPauseButton === false) {
-                setMinutes((prevState) => {
-                  if (prevState < 60) {
-                    return prevState + 1;
-                  } else {
-                    return prevState;
-                  }
-                });
-              }
-            }}
-            fontSize="large"
-          />*/}
           <span id="session-length">{sessionLength}</span>
           <button
-            id="session-decrement"
+            className="arrow"
+            id="session-increment"
             onClick={() => {
               if (playPauseButton === false) {
                 setSessionLength((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
+                  if (prevState < 60) {
+                    return prevState + 1;
                   } else {
-                    return 1;
+                    return prevState;
                   }
                 });
               }
               if (state === "session" && playPauseButton === false) {
                 setMinutes((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
+                  if (prevState < 60) {
+                    return prevState + 1;
                   } else {
-                    return 1;
+                    return prevState;
                   }
                 });
               }
             }}
           >
-            DOWN
+            <FaArrowUp />
           </button>
-          {/*<ArrowDownwardIcon
-            id="session-decrement"
-            onClick={() => {
-              if (playPauseButton === false) {
-                setSessionLength((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
-                  } else {
-                    return 1;
-                  }
-                });
-              }
-              if (state === "session" && playPauseButton === false) {
-                setMinutes((prevState) => {
-                  if (prevState > 1) {
-                    return prevState - 1;
-                  } else {
-                    return 1;
-                  }
-                });
-              }
-            }}
-            fontSize="large"
-          />*/}
         </div>
       </div>
     </div>
