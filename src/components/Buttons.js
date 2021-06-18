@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Context } from "../Context";
+import { Context } from "../container/Context";
 
 import { FaArrowUp } from "react-icons/fa";
 import { FaArrowDown } from "react-icons/fa";
@@ -27,7 +27,6 @@ function Buttons() {
             onClick={() => {
               if (playPauseButton === false) {
                 setBreakLength((prevState) => {
-                  //console.log(prevState);
                   if (prevState > 1) {
                     return prevState - 1;
                   } else {
@@ -55,7 +54,6 @@ function Buttons() {
             onClick={() => {
               if (playPauseButton === false) {
                 setBreakLength((prevState) => {
-                  //console.log(prevState);
                   if (prevState < 60) {
                     return prevState + 1;
                   } else {

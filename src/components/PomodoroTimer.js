@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../Context";
+import { Context } from "../container/Context";
 
 import Buttons from "./Buttons";
 import { FaPlay } from "react-icons/fa";
@@ -29,7 +29,6 @@ function PomodoroTimer() {
         <div id="timer-label">{state === "session" ? "Session" : "Break"}</div>
         <div id="time-left">
           {/* If minutes or seconds are less than 10 add a leading 0 to it*/}
-          {/* console.log(minutes, seconds) */}
           {`${minutes < 10 ? "0" + minutes : minutes}:${
             seconds < 10 ? "0" + seconds : seconds
           }`}

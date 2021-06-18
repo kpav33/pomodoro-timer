@@ -1,8 +1,8 @@
-import "./styles.scss";
+import "../styles.scss";
 import React from "react";
 
-import Title from "./components/Title";
-import PomodoroTimer from "./components/PomodoroTimer";
+import Title from "../components/Title";
+import PomodoroTimer from "../components/PomodoroTimer";
 
 function App() {
   return (
