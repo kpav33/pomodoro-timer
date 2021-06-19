@@ -27,13 +27,11 @@ function ContextProvider({ children }) {
   let audioSrc =
     "https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav";
 
-  console.log(minutes, seconds);
   if (minutes === 0 && seconds === 0 && play) {
     audioRef.current.load();
     const playPromise = audioRef.current.play();
     if (playPromise !== undefined) {
       playPromise.then(() => {}).catch((err) => console.log(err));
-      console.log("PLAY SOUND");
     }
   }
 
