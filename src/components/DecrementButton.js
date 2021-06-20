@@ -11,6 +11,9 @@ function DecrementButton({ buttonId, setLength, stateValue }) {
       className="arrow"
       id={buttonId}
       onClick={() => {
+        {
+          /* Disable buttons while timer is playing */
+        }
         if (playPauseButton === false) {
           setLength((prevState) => {
             if (prevState > 1) {
@@ -19,6 +22,9 @@ function DecrementButton({ buttonId, setLength, stateValue }) {
               return 1;
             }
           });
+        }
+        {
+          /* Keep in sync the clock display minutes value with the value set with the arrow buttons, depending on whether the current state is session or break */
         }
         if (stateValue && playPauseButton === false) {
           setMinutes((prevState) => {

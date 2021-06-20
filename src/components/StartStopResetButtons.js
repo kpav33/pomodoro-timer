@@ -19,7 +19,8 @@ function StartStopResetButtons() {
 
   return (
     <div className="controlButtons">
-      <div id="test">
+      {/* Switch between play or pause button */}
+      <div id="playPauseButtons">
         {!playPauseButton ? (
           <div id="start_stop" onClick={() => setPlayPauseButton(true)}>
             <FaPlay />
@@ -30,6 +31,7 @@ function StartStopResetButtons() {
           </div>
         )}
       </div>
+      {/* Reset button */}
       <div
         id="reset"
         onClick={() => {

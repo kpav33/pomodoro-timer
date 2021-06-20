@@ -6,16 +6,17 @@ function ContextProvider({ children }) {
   // Session or break
   const [state, setState] = useState("session");
 
-  // Break state
+  // Break length
   const [breakLength, setBreakLength] = useState(5);
 
-  // Session state
+  // Session length
   const [sessionLength, setSessionLength] = useState(25);
 
+  // Timer state
   const [minutes, setMinutes] = useState(25);
   const [seconds, setSeconds] = useState(0);
 
-  // Play/Pause button
+  // Play/Pause button switch
   const [playPauseButton, setPlayPauseButton] = useState(false);
 
   // Audio
@@ -38,18 +39,15 @@ function ContextProvider({ children }) {
   // Timer
   function updateTime() {
     // Fix bug of playing audio at one minute mark, search for better solution
-    if (minutes === 0) {
-      setPlay(true);
-    }
+    minutes === 0 ? setPlay(true) : setPlay(false);
     if (minutes === 0 && seconds === 0) {
-      //reset
+      // Switch between session and break
       if (state === "session") {
         // Tests don't pass with the commented out code in place
         // alert("Session over! Continue?");
         setState("break");
         setSeconds(0);
         setMinutes(breakLength);
-        setPlay(false);
         // setPlayPauseButton(false);
       } else {
         // Tests don't pass with the commented out code in place
@@ -57,7 +55,6 @@ function ContextProvider({ children }) {
         setState("session");
         setSeconds(0);
         setMinutes(sessionLength);
-        setPlay(false);
         // setPlayPauseButton(false);
       }
     } else {
@@ -78,7 +75,7 @@ function ContextProvider({ children }) {
         clearTimeout(token);
       };
     }
-  });
+  }, [playPauseButton, minutes, seconds]);
 
   return (
     <Context.Provider

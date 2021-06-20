@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-
 import { Context } from "../container/Context";
 
 import IncrementButton from "./IncrementButton";
@@ -16,6 +15,7 @@ function BreakSessionControl() {
 
   return (
     <div className="buttons">
+      {/* Break length controls */}
       <div id="break-label" className="label">
         <h4>Break Length</h4>
         <div className="breaks">
@@ -32,6 +32,7 @@ function BreakSessionControl() {
           />
         </div>
       </div>
+      {/* Session length controls */}
       <div id="session-label" className="label">
         <h4>Session Length</h4>
         <div className="sessions">
