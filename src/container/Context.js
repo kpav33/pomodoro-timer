@@ -75,7 +75,7 @@ function ContextProvider({ children }) {
         clearTimeout(token);
       };
     }
-  }, [playPauseButton, minutes, seconds]);
+  });
 
   return (
     <Context.Provider

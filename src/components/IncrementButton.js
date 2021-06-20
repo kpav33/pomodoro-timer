@@ -11,9 +11,7 @@ function IncrementButton({ buttonId, setLength, stateValue }) {
       className="arrow"
       id={buttonId}
       onClick={() => {
-        {
-          /* Disable buttons while timer is playing */
-        }
+        // Disable buttons while timer is playing
         if (playPauseButton === false) {
           setLength((prevState) => {
             if (prevState < 60) {
@@ -23,9 +21,7 @@ function IncrementButton({ buttonId, setLength, stateValue }) {
             }
           });
         }
-        {
-          /* Keep in sync the clock display minutes value with the value set with the arrow buttons, depending on whether the current state is session or break */
-        }
+        // Keep in sync the clock display minutes value with the value set with the arrow buttons, depending on whether the current state is session or break
         if (stateValue && playPauseButton === false) {
           setMinutes((prevState) => {
             if (prevState < 60) {
