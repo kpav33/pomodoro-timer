@@ -9,16 +9,16 @@
 *,
 *:before,
 *:after {
-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-margin: 0;
-padding: 0;
-font-size: 16px;
-color: var(--text);
-font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  color: var(--text);
+  font-family: 'Roboto', sans-serif;
 }
 
 .app {
@@ -30,14 +30,18 @@ font-family: 'Roboto', sans-serif;
 }
 
 .panel {
-  width: 450px;
+  height: 95vh;
+  width: 95%;
+  border-radius: 5px;
   background: var(--background-panel);
-  padding: 0.5rem;
+  padding: 2.5rem 0.5rem;
 
     // Layout for larger screens
     @media only screen and (min-width: 768px) {
         height: auto;
-      }
+        padding: 0.5rem;
+        width: 450px
+    }
 }
 
 // || TITLE
@@ -50,7 +54,7 @@ font-family: 'Roboto', sans-serif;
     margin: 0;
     padding: 1rem 1rem 0rem 1rem;
     text-align: center;
-    width: 220px;
+    width: 240px;
     border-bottom: 2px solid var(--green);
   }
 }
@@ -61,9 +65,10 @@ font-family: 'Roboto', sans-serif;
   justify-content: space-evenly;
   align-items: center;
 
-  h4 {
+  h2 {
     font-weight: 400;
     font-size: 1.3rem;
+    margin-bottom: 0.5rem;
   }
 
   .label {
@@ -90,48 +95,94 @@ font-family: 'Roboto', sans-serif;
 .arrow {
   background: none;
   border: none;
-  cursor: pointer;
   color: var(--text);
   font-size: 1.5rem;
+}
+
+.arrow-enabled {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.arrow-disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
 
 // || POMODORO TIMER
 .pomodoroTimer {
   display: grid;
-  grid-template: 100px 150px 50px / 1fr;
+  grid-template: 100px 450px / 1fr;
+  grid-gap: 1rem;
+
+  @media only screen and (min-width: 768px) {
+    grid-template: 100px 250px / 1fr;
+    grid-gap: 0rem;
+  }
 
   .clock {
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     background: var(--background-app);
     border: 2px solid var(--green);
     border-radius: 1rem;
-    margin: 1rem 2.5rem;
+
+    @media only screen and (min-width: 768px) {
+      justify-content: space-evenly;
+      margin: 1rem 2.5rem;
+    }
     
     #timer-label {
-      font-size: 1.5rem;
+      font-size: 2rem;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
 
     #time-left {
-      font-size: 3rem;
+      font-size: 4.5rem;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 4rem;
+      }
     }
   }
 
   .controlButtons {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    font-size: 1.2rem;
+    width: 50%;
 
-    #start_stop {
+    @media only screen and (min-width: 768px) {
+      justify-content: space-around;
+    }
+
+    #playPauseButtons button {
+      background: none;
+      border: none;
       cursor: pointer;
+      color: var(--text);
+      font-size: 2.5rem;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
 
     #reset {
-      font-size: 1.5rem;
-      cursor: pointer; 
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 2.5rem;
+
+      @media only screen and (min-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
   }
 }

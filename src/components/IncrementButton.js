@@ -8,6 +8,7 @@ function IncrementButton({ buttonId, setLength, stateValue }) {
 
   return (
     <button
+      aria-label="Increment value"
       className="arrow"
       id={buttonId}
       onClick={() => {
@@ -33,7 +34,7 @@ function IncrementButton({ buttonId, setLength, stateValue }) {
         }
       }}
     >
-      <FaArrowUp />
+      <FaArrowUp className={playPauseButton ? "arrow-disabled" : "arrow"} />
     </button>
   );
 }

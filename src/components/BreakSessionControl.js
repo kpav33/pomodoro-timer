@@ -11,14 +11,18 @@ function BreakSessionControl() {
     sessionLength,
     setSessionLength,
     state,
+    playPauseButton,
   } = useContext(Context);
 
   return (
     <div className="buttons">
       {/* Break length controls */}
       <div id="break-label" className="label">
-        <h4>Break Length</h4>
-        <div className="breaks">
+        <h2>Break Length</h2>
+        <div
+          className="breaks"
+          style={{ opacity: playPauseButton ? "0.8" : "1" }}
+        >
           <DecrementButton
             buttonId="break-decrement"
             setLength={setBreakLength}
@@ -34,8 +38,11 @@ function BreakSessionControl() {
       </div>
       {/* Session length controls */}
       <div id="session-label" className="label">
-        <h4>Session Length</h4>
-        <div className="sessions">
+        <h2>Session Length</h2>
+        <div
+          className="sessions"
+          style={{ opacity: playPauseButton ? "0.8" : "1" }}
+        >
           <DecrementButton
             buttonId="session-decrement"
             setLength={setSessionLength}

@@ -8,6 +8,7 @@ function DecrementButton({ buttonId, setLength, stateValue }) {
 
   return (
     <button
+      aria-label="Decrement value"
       className="arrow"
       id={buttonId}
       onClick={() => {
@@ -33,7 +34,9 @@ function DecrementButton({ buttonId, setLength, stateValue }) {
         }
       }}
     >
-      <FaArrowDown />
+      <FaArrowDown
+        className={playPauseButton ? "arrow-disabled" : "arrow-enabled"}
+      />
     </button>
   );
 }

@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { Context } from "../container/Context";
 
+import StartStopResetButtons from "./StartStopResetButtons";
+
 function Clock() {
   const { state, minutes, seconds } = useContext(Context);
 
@@ -13,6 +15,7 @@ function Clock() {
           seconds < 10 ? "0" + seconds : seconds
         }`}
       </div>
+      <StartStopResetButtons />
     </div>
   );
 }

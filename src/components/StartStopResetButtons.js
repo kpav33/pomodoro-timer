@@ -22,17 +22,25 @@ function StartStopResetButtons() {
       {/* Switch between play or pause button */}
       <div id="playPauseButtons">
         {!playPauseButton ? (
-          <div id="start_stop" onClick={() => setPlayPauseButton(true)}>
+          <button
+            aria-label="Play button"
+            id="start_stop"
+            onClick={() => setPlayPauseButton(true)}
+          >
             <FaPlay />
-          </div>
+          </button>
         ) : (
-          <div id="start_stop" onClick={() => setPlayPauseButton(false)}>
+          <button
+            aria-label="Pause button"
+            id="start_stop"
+            onClick={() => setPlayPauseButton(false)}
+          >
             <FaPause />
-          </div>
+          </button>
         )}
       </div>
       {/* Reset button */}
-      <div
+      <button
         id="reset"
         onClick={() => {
           audioRef.current.pause();
@@ -46,7 +54,7 @@ function StartStopResetButtons() {
         }}
       >
         <FiRefreshCw />
-      </div>
+      </button>
     </div>
   );
 }

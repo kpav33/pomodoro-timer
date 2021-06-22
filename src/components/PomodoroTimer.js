@@ -3,7 +3,6 @@ import { Context } from "../container/Context";
 
 import BreakSessionControl from "./BreakSessionControl";
 import Clock from "./Clock";
-import StartStopResetButtons from "./StartStopResetButtons";
 
 function PomodoroTimer() {
   const { audioSrc, audioRef } = useContext(Context);
@@ -12,7 +11,6 @@ function PomodoroTimer() {
     <div className="pomodoroTimer">
       <BreakSessionControl />
       <Clock />
-      <StartStopResetButtons />
       <audio
         id="beep"
         preload="auto"
