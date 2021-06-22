@@ -112,7 +112,7 @@ body {
 // || POMODORO TIMER
 .pomodoroTimer {
   display: grid;
-  grid-template: 100px 450px / 1fr;
+  grid-template: 100px 350px / 1fr;
   grid-gap: 1rem;
 
   @media only screen and (min-width: 768px) {
